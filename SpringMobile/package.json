@@ -1,0 +1,20 @@
+{
+  "name": "SpringMobile",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "react-native start"
+  },
+  "dependencies": {
+    "flux": "^2.1.1",
+    "react": "^0.14.5",
+    "react-native": "^0.17.0",
+    "react-native-button": "^1.3.1",
+    "react-redux": "^4.0.6",
+    "redux": "^3.0.5",
+    "redux-actions": "^0.9.0"
+  },
+  "devDependencies": {
+    "redux-devtools": "^3.0.1"
+  }
+}

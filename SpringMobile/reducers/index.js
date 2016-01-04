@@ -15,7 +15,6 @@ import { combineReducers } from 'redux'
 
 
 function incrementer(state = 0, action) {
-    alert('incrementer: ' + action.type);
     switch (action.type) {
         case 'INCREMENT':
             return state + 1;
