@@ -5,7 +5,7 @@
 'use strict';
 
 import { connect } from 'react-redux'
-import { increment } from '../../actions'
+import { increment, decrement } from '../../actions'
 
 var React = require('react-native');
 var Button = require('react-native-button');
@@ -20,14 +20,15 @@ var {
 // Which part of the Redux global state does our component want to receive as props?
 function mapStateToProps(state) {
     return {
-        value: state.incrementer
+        value: state.incrementer.counter
     }
 }
 
 // Which action creators does it want to receive by props?
 function mapDispatchToProps(dispatch) {
     return {
-        onIncrement: () => { dispatch(increment(1)); }
+        onIncrement: () => dispatch(increment(1)),
+        onDecrement: () => dispatch(decrement(2))
     }
 }
 
@@ -40,7 +41,11 @@ class MerchantListView extends React.Component{
                 </Text>
 
                 <Button onPress={this.props.onIncrement}>
-                    Cur: {this.props.value}
+                     +
+                </Button>
+
+                <Button onPress={this.props.onDecrement}>
+                     --
                 </Button>
             </View>
         );

@@ -1,14 +1,7 @@
-//import { createAction } from 'redux-actions';
-
-//export const increment = createAction('INCREMENT');
+import { createAction } from 'redux-actions';
 
 export const INCREMENT = 'INCREMENT';
+export const increment = createAction(INCREMENT);
 
-export function increment(count) {
-    return {
-        type: 'INCREMENT',
-        count
-    }
-}
-
-
+export const DECREMENT = 'DECREMENT';
+export const decrement = createAction(DECREMENT);
