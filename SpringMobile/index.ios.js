@@ -6,23 +6,18 @@
 
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
-import reducer from './reducers'
+import configureStore from './store/configureStore'
+import MerchantListView  from './ios/components/MerchantListView'
 
 var React = require('react-native');
-
 var {
     AppRegistry,
     StyleSheet,
     Text,
-    View,
+    View
     } = React;
 
-
-import MerchantListView  from './ios/components/MerchantListView';
-
-let store = createStore(reducer);
-
-console.log(store.getState());
+const store = configureStore();
 
 var SpringMobile = React.createClass({
     render: function () {
@@ -63,7 +58,7 @@ var styles = StyleSheet.create({
         textAlign: 'center',
         color: '#333333',
         marginBottom: 5
-    },
+    }
 });
 
 AppRegistry.registerComponent('SpringMobile', () => SpringMobile);

@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux'
 
 import incrementer from './incrementer'
+import merchants from './merchants'
 
 const reducer = combineReducers({
-    incrementer
+    incrementer,
+    merchants
 });
 
 export default reducer;

@@ -5,48 +5,55 @@
 'use strict';
 
 import { connect } from 'react-redux'
-import { increment, decrement } from '../../actions'
+import MerchantListTile from './MerchantListTile'
+import { fetchMerchants } from '../../actions'
 
 var React = require('react-native');
-var Button = require('react-native-button');
 
 
 var {
     View,
     StyleSheet,
-    Text
+    Text,
+    TouchableHighlight
     } = React;
 
 // Which part of the Redux global state does our component want to receive as props?
 function mapStateToProps(state) {
     return {
-        value: state.incrementer.counter
-    }
+        merchants: state.merchants.items,
+        loading: state.merchants.isLoading
+    };
 }
 
 // Which action creators does it want to receive by props?
 function mapDispatchToProps(dispatch) {
     return {
         onIncrement: () => dispatch(increment(1)),
-        onDecrement: () => dispatch(decrement(2))
+        onDecrement: () => dispatch(decrement(2)),
+        onLoadMerchants: () => dispatch(fetchMerchants())
     }
 }
 
-class MerchantListView extends React.Component{
+class MerchantListView extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.instructions}>
-                    Value = |{this.props.value}|
-                </Text>
 
-                <Button onPress={this.props.onIncrement}>
-                     +
-                </Button>
+                {this.props.merchants.length === 0 &&
+                <TouchableHighlight onPress={this.props.onLoadMerchants}>
+                    <Text>Load Merchants</Text>
+                </TouchableHighlight>}
 
-                <Button onPress={this.props.onDecrement}>
-                     --
-                </Button>
+                {this.props.loading && <Text>LOADING!</Text>}
+
+                { this.props.merchants.map(merchant => {
+                    return (
+                        <MerchantListTile
+                            key={merchant.id}
+                            merchant={merchant}/>
+                    );
+                })}
             </View>
         );
     }
