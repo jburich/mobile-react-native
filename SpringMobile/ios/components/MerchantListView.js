@@ -7,6 +7,7 @@
 import { connect } from 'react-redux'
 import MerchantListTile from './MerchantListTile'
 import { fetchMerchants } from '../../actions'
+import {Actions} from 'react-native-router-flux'
 
 var React = require('react-native');
 
@@ -15,7 +16,7 @@ var {
     View,
     StyleSheet,
     Text,
-    TouchableHighlight
+    TouchableOpacity
     } = React;
 
 // Which part of the Redux global state does our component want to receive as props?
@@ -39,11 +40,14 @@ class MerchantListView extends React.Component {
     render() {
         return (
             <View style={styles.container}>
+                <TouchableOpacity onPress={Actions.back}>
+                    <Text>To Counter</Text>
+                </TouchableOpacity>
 
-                {this.props.merchants.length === 0 &&
-                <TouchableHighlight onPress={this.props.onLoadMerchants}>
+                {this.props.merchants.length === 0 && !this.props.loading &&
+                <TouchableOpacity onPress={this.props.onLoadMerchants}>
                     <Text>Load Merchants</Text>
-                </TouchableHighlight>}
+                </TouchableOpacity>}
 
                 {this.props.loading && <Text>LOADING!</Text>}
 
@@ -60,9 +64,13 @@ class MerchantListView extends React.Component {
 }
 
 var styles = StyleSheet.create({
+    container: {
+        marginTop: 100,
+        flex: 1
+    },
     instructions: {
         textAlign: 'center',
-        color: '#333333',
+        color: 'red',
         marginBottom: 5
     }
 });

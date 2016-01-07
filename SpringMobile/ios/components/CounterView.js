@@ -9,12 +9,13 @@ import { increment, decrement } from '../../actions'
 
 var React = require('react-native');
 var Button = require('react-native-button');
-
+import {Actions} from 'react-native-router-flux'
 
 var {
     View,
     StyleSheet,
-    Text
+    Text,
+    TouchableOpacity
     } = React;
 
 // Which part of the Redux global state does our component want to receive as props?
@@ -47,12 +48,20 @@ class CounterView extends React.Component{
                 <Button onPress={this.props.onDecrement}>
                      --
                 </Button>
+
+                <TouchableOpacity onPress={Actions.merchants}>
+                    <Text>To Merchant List</Text>
+                </TouchableOpacity>
             </View>
         );
     }
 }
 
 var styles = StyleSheet.create({
+    container: {
+        marginTop: 100,
+        flex: 1
+    },
     instructions: {
         textAlign: 'center',
         color: '#333333',
@@ -63,4 +72,4 @@ var styles = StyleSheet.create({
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(MerchantListView);
+)(CounterView);

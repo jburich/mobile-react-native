@@ -8,6 +8,9 @@ import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import configureStore from './store/configureStore'
 import MerchantListView  from './ios/components/MerchantListView'
+//import NavigationBarSample   from './ios/components/NavigationContainer'
+import SpringRouter from './ios/components/NavigationContainer'
+import { fetchMerchants } from './actions'
 
 var React = require('react-native');
 var {
@@ -19,24 +22,13 @@ var {
 
 const store = configureStore();
 
+store.dispatch(fetchMerchants());
+
 var SpringMobile = React.createClass({
     render: function () {
         return (
             <Provider store={store}>
-                <View style={styles.container}>
-                    <Text style={styles.welcome}>
-                        Welcome to React Native!
-                    </Text>
-                    <Text style={styles.instructions}>
-                        To get started, edit index.ios.js
-                        The file has been edited.
-                    </Text>
-                    <Text style={styles.instructions}>
-                        Press Cmd+R to reload,{'\n'}
-                        Cmd+D or shake for dev menu
-                    </Text>
-                    <MerchantListView/>
-                </View>
+                <SpringRouter/>
             </Provider>
         );
     }
@@ -45,8 +37,6 @@ var SpringMobile = React.createClass({
 var styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
         backgroundColor: '#F5FCFF'
     },
     welcome: {

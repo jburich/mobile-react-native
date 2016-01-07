@@ -15,7 +15,7 @@ class MerchantListTile extends React.Component{
     render() {
         return (
             <View>
-                <Text style={styles.name}>
+                <Text style={styles.instructions}>
                     {this.props.merchant.business_name}
                 </Text>
             </View>
