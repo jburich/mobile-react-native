@@ -8,7 +8,6 @@ import { connect } from 'react-redux'
 import { increment, decrement } from '../../actions'
 
 var React = require('react-native');
-var Button = require('react-native-button');
 import {Actions} from 'react-native-router-flux'
 
 var {
@@ -41,16 +40,24 @@ class CounterView extends React.Component{
                     Value = |{this.props.value}|
                 </Text>
 
-                <Button onPress={this.props.onIncrement}>
-                     +
-                </Button>
+                <TouchableOpacity onPress={this.props.onIncrement}>
+                    <Text>+</Text>
+                </TouchableOpacity>
 
-                <Button onPress={this.props.onDecrement}>
-                     --
-                </Button>
+                <TouchableOpacity onPress={this.props.onDecrement}>
+                    <Text>-</Text>
+                </TouchableOpacity>
 
                 <TouchableOpacity onPress={Actions.merchants}>
                     <Text>To Merchant List</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={Actions.map}>
+                    <Text>To Map</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={Actions.mapExample}>
+                    <Text>To Example Map</Text>
                 </TouchableOpacity>
             </View>
         );

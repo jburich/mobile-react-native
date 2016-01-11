@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 
 import MerchantListView from './MerchantListView'
 import CounterView from './CounterView'
+import SpringMapView from './MapView'
 
 export default class SpringRouter extends React.Component {
     render() {
@@ -15,6 +16,7 @@ export default class SpringRouter extends React.Component {
 
                 <Route name="home" component={CounterView} initial={true} title="Counter Views"/>
                 <Route name="merchants" component={MerchantListView} title="Merchants"/>
+                <Route name="map" component={SpringMapView} title="Map"/>
             </Router>
         );
     }

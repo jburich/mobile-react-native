@@ -10,7 +10,7 @@ import configureStore from './store/configureStore'
 import MerchantListView  from './ios/components/MerchantListView'
 //import NavigationBarSample   from './ios/components/NavigationContainer'
 import SpringRouter from './ios/components/NavigationContainer'
-import { fetchMerchants } from './actions'
+import { fetchMerchants, fetchLocation, fetchEnrollments } from './actions'
 
 var React = require('react-native');
 var {
@@ -23,6 +23,8 @@ var {
 const store = configureStore();
 
 store.dispatch(fetchMerchants());
+store.dispatch(fetchEnrollments());
+store.dispatch(fetchLocation());
 
 var SpringMobile = React.createClass({
     render: function () {
