@@ -7,7 +7,6 @@ export default handleActions({
         }),
 
         RECEIVE_LOCATION: (state, action) => {
-            console.log(action);
             if ( action.error || action.payload.code > 0 ) {
                 return {
                     isLoading: false,

@@ -1,7 +1,6 @@
 var handleActions = require('redux-actions').handleActions;
 
 function mergeSingleEnrollmentAndMerchant( merchant, enrollment) {
-    console.log(merchant.id + ' has enrollments: ' + enrollment);
     switch ( enrollment ? enrollment.reward.status : 'non-member') {
         case 'active':
             merchant.isMember = true;
@@ -24,7 +23,6 @@ function mergeSingleEnrollmentAndMerchant( merchant, enrollment) {
         if ( location.active_offer_types_available_to ) {
             location.active_offer_types_available_to.forEach(available_type => {
                 if (consumerMatchesOfferRules(available_type.available_to, enrollment)) {
-                    console.log(merchant.business_name + " has offers");
                     //set the offer type... ugly as crap but it works
                     //using this switch because there used to be 4 types and at least 1 will likely come back
                     if (available_type.type === 'DealOffer') {
@@ -109,19 +107,13 @@ function  consumerMatchesOfferRules(rule, merchant, enrollment) {
 
 function mergeEnrollmentsIntoMerchants(merchants, enrollmentsArray) {
     if ( enrollmentsArray ) {
-        console.log('has errollments array');
-        console.log(merchants.length);
         //make a quick keyed map as enrollments is really small and merchants is really big
         var enrollments = {};
-        console.log('before foreach: ' + Object.keys( enrollmentsArray) );
         enrollmentsArray.forEach(enrollment => {
-            console.log('enrollmentsArray foreach ' + enrollment.merchant_id);
             enrollments[enrollment.merchant_id] = enrollment;
         });
-        console.log('about to call mergeSingle: ' +  merchants.length);
         return merchants.map(merchant => mergeSingleEnrollmentAndMerchant(merchant, enrollments[merchant.id]));
     } else {
-        console.log('no errollments array')
         return merchants;
     }
 }
@@ -140,9 +132,7 @@ export default handleActions({
         }),
 
         RECEIVE_ENROLLMENTS: (state, action) => {
-            console.log('Merchants Receive Enrollments: ' + action.error);
             if (action.error) {
-                console.log(action.payload);
                 return state;
             } else {
                 return {
