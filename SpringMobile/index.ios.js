@@ -11,6 +11,8 @@ import MerchantListView  from './ios/components/MerchantListView'
 //import NavigationBarSample   from './ios/components/NavigationContainer'
 import SpringRouter from './ios/components/NavigationContainer'
 import { fetchMerchants, fetchLocation, fetchEnrollments } from './actions'
+import Menu from './ios/components/Menu'
+var Drawer = require('react-native-drawer');
 
 var React = require('react-native');
 var {
@@ -30,7 +32,13 @@ var SpringMobile = React.createClass({
     render: function () {
         return (
             <Provider store={store}>
-                <SpringRouter/>
+                <Drawer
+                    type="displace"
+                    initializeOpen={false}
+                    openDrawerOffset={0.3}
+                    content={<Menu/>} >
+                    <SpringRouter/>
+                </Drawer>
             </Provider>
         );
     }

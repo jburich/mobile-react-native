@@ -13,8 +13,7 @@ import {Actions} from 'react-native-router-flux'
 var {
     View,
     StyleSheet,
-    Text,
-    TouchableOpacity
+    Text
     } = React;
 
 // Which part of the Redux global state does our component want to receive as props?
@@ -24,15 +23,14 @@ function mapStateToProps(state) {
     }
 }
 
-// Which action creators does it want to receive by props?
+//// Which action creators does it want to receive by props?
 function mapDispatchToProps(dispatch) {
     return {
-        onIncrement: () => dispatch(increment(1)),
-        onDecrement: () => dispatch(decrement(2))
+
     }
 }
 
-class CounterView extends React.Component{
+class CounterView extends React.Component {
     render() {
         return (
             <View style={styles.container}>
@@ -40,25 +38,6 @@ class CounterView extends React.Component{
                     Value = |{this.props.value}|
                 </Text>
 
-                <TouchableOpacity onPress={this.props.onIncrement}>
-                    <Text>+</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity onPress={this.props.onDecrement}>
-                    <Text>-</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity onPress={Actions.merchants}>
-                    <Text>To Merchant List</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity onPress={Actions.map}>
-                    <Text>To Map</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity onPress={Actions.mapExample}>
-                    <Text>To Example Map</Text>
-                </TouchableOpacity>
             </View>
         );
     }
